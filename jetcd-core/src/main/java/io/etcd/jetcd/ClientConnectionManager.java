@@ -52,6 +52,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
@@ -175,6 +176,10 @@ final class ClientConnectionManager {
   @VisibleForTesting
   protected ManagedChannelBuilder<?> defaultChannelBuilder() {
     final NettyChannelBuilder channelBuilder = NettyChannelBuilder.forTarget("etcd");
+
+    channelBuilder.keepAliveWithoutCalls(true);
+    channelBuilder.keepAliveTime(10, TimeUnit.SECONDS);
+    channelBuilder.keepAliveTimeout(1, TimeUnit.SECONDS);
 
     if (builder.maxInboundMessageSize() != null) {
       channelBuilder.maxInboundMessageSize(builder.maxInboundMessageSize());

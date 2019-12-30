@@ -24,6 +24,8 @@
         <version>0.3.0</version>
     </parent>
 
+    <version>0.3.0-KEEP_ALIVE</version>
+
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jetcd-core</artifactId>
     <packaging>bundle</packaging>
@@ -36,10 +38,12 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <version>${project.parent.version}</version>
             <artifactId>jetcd-common</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <version>${project.parent.version}</version>
             <artifactId>jetcd-resolver</artifactId>
         </dependency>
 
@@ -122,6 +126,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <version>${project.parent.version}</version>
             <artifactId>jetcd-launcher</artifactId>
             <scope>test</scope>
         </dependency>
